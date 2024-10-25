@@ -1,6 +1,7 @@
 module DecayAngles
 
 using AbstractTrees
+using Setfield
 
 export DecayNode
 export map_tree

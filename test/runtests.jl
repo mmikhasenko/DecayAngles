@@ -21,7 +21,8 @@ end
 end
 
 
-with_parent = map_with_parent(dn, "X") do value, parent_value
+with_parent = map_with_parent_node(dn, DecayNode("X",[dn])) do value, parent
+    parent_value = nodevalue(parent)
 	string(parent_value) * " => " * string(value)
 end
 

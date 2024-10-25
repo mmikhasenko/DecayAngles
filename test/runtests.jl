@@ -29,3 +29,9 @@ end
     @test nodevalue(children(with_parent)[1]) == ("X => (1, (2, 3)) => 1")
     @test nodevalue(children(with_parent)[2]) == ("X => (1, (2, 3)) => (2, 3)")
 end
+
+@testset "Flatten sorted tuple" begin
+    topology = ((4,1),(2,3))
+    @test flatten_nested_tuple(topology) == (4,1,2,3)
+    @test flatten_sort_nested_tuple(topology) == (1,2,3,4)
+end

@@ -10,5 +10,8 @@ export nodevalue
 export children
 include("decaynode.jl")
 
+export flatten_nested_tuple
+export flatten_sort_nested_tuple
+include("utils.jl")
 
 end # module DecayAngles

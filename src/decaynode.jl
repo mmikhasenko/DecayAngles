@@ -46,10 +46,10 @@ function map_tree(f, node::DecayNode)
 end
 
 """
-	map_with_parent(f, node::DecayNode)
+	map_with_parent_node(f, node::DecayNode, parent_node = DecayNode(nothing, [node]))
 
-Porpagates the values from parent to all children and apply operation on it.
-The signature of the function is f(value, parent_value)
+Propagates the values from parent to all children and apply operation on it.
+The signature of the function is f(value, parent_node)
 
 ## Example
 ```julia
@@ -58,10 +58,14 @@ julia> map_with_parent(DecayNode((1,(2,3))), "0") do value, parent_value
 end
 ```
 """
-function map_with_parent(f, node::DecayNode, parent_value=nothing)
-    new_value = f(nodevalue(node), parent_value)
+function map_with_parent_node(f,
+	node::DecayNode,
+	parent_node = DecayNode(nothing, [node]))
+	#
+    new_value = f(nodevalue(node), parent_node)
+	new_node = @set node.value = new_value
     new_children = map(children(node)) do child
-        map_with_parent(f, child, new_value)
+        map_with_parent_node(f, child, new_node)
     end
     return DecayNode(new_value, new_children)
 end
@@ -69,7 +73,7 @@ end
 """
     totable(tree::DecayNode)
 
-Iterate over the tree and table-like collection of named tuples from the node values.     
+Iterate over the tree and table-like collection of named tuples from the node values.
 
 ## Example
 ```julia
@@ -83,4 +87,3 @@ function to_table(tree::DecayNode)
         (; node.value...)
     end
 end
-

@@ -4,7 +4,7 @@ using AbstractTrees
 
 export DecayNode
 export map_tree
-export map_with_parent
+export map_with_parent_node
 export to_table
 export nodevalue
 export children

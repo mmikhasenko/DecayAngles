@@ -1,0 +1,17 @@
+name = "DecayAngles"
+uuid = "b554e927-dfdc-487d-b897-432a0f9e843f"
+authors = ["Mikhail Mikhasenko <mikhail.mikhasenko@cern.ch>"]
+version = "0.1.0"
+
+[deps]
+AbstractTrees = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
+
+[compat]
+AbstractTrees = "0.4.5"
+Test = "1.11.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

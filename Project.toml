@@ -5,10 +5,14 @@ version = "0.1.0"
 
 [deps]
 AbstractTrees = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
+FourVectors = "b122eb78-8380-428a-b8c8-584a022ae8b6"
+LorentzVectorBase = "592a752d-6533-4762-a71b-738712ea30ec"
 Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
 Setfield = "efcf1570-3423-57d1-acb7-fd33fddbac46"
 
 [compat]
 AbstractTrees = "0.4.5"
+FourVectors = "0.2.0"
+LorentzVectorBase = "0.0.1"
 Parameters = "0.12.3"
 Setfield = "1.1.1"

@@ -3,6 +3,7 @@ module DecayAngles
 using AbstractTrees
 using Setfield
 using Parameters
+using FourVectors
 
 export DecayNode
 export map_tree

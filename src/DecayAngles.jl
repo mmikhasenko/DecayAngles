@@ -2,6 +2,7 @@ module DecayAngles
 
 using AbstractTrees
 using Setfield
+using Parameters
 
 export DecayNode
 export map_tree
@@ -14,5 +15,15 @@ include("decaynode.jl")
 export flatten_nested_tuple
 export flatten_sort_nested_tuple
 include("utils.jl")
+
+export AnglesGamma
+export HelicityTransformation
+export DaughterTransformation
+include("transformations.jl")
+
+export add_transform_through
+export add_indices_order
+export decay_angles
+include("traversing.jl")
 
 end # module DecayAngles

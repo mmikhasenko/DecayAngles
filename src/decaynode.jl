@@ -84,6 +84,6 @@ julia> totable(topology) |> DataFrame
 function to_table(tree::DecayNode)
     all_nodes = collect(PreOrderDFS(tree))
     return map(all_nodes) do node
-        (; node.value...)
+        (; nodevalue(node)...)
     end
 end

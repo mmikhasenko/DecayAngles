@@ -5,8 +5,10 @@ version = "0.1.0"
 
 [deps]
 AbstractTrees = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
+Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
 Setfield = "efcf1570-3423-57d1-acb7-fd33fddbac46"
 
 [compat]
 AbstractTrees = "0.4.5"
+Parameters = "0.12.3"
 Setfield = "1.1.1"

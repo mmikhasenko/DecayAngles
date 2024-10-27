@@ -47,5 +47,5 @@ function decay_angles(tree_with_momenta)
         value = nodevalue(node)
         child1_θ, child1_ϕ = ch1_value.θ, ch1_value.ϕ
         (; value.names, value.m, child1_θ, child1_ϕ)
-    end |> DataFrame
+    end
 end

@@ -25,6 +25,11 @@ To install **DecayAngles.jl**, you can add the package via the Julia package man
 ```julia
 ] add https://github.com/yourusername/DecayAngles.jl
 ```
+the package depends on a few none registered packages, they also need to be installed,
+```
+] add https://github.com/JuliaHEP/LorentzVectorBase.jl
+] add https://github.com/mmikhasenko/FourVectors.jl
+```
 
 ## Usage
 
@@ -37,12 +42,30 @@ using DecayAngles
 
 # Define a decay topology as a nested tuple structure
 topology = (1, (2, 3))
-
-# a special constructor from a tuple
-dn = DecayNode(topology)
 ```
 
-In this example, `dn` is a `DecayNode` that represents a decay topology where particle `1` and the pair `(2, 3)` form the branching structure.
+To construct a decay tree from a tuple, one calls a `DecayNode` of the topology.
+```julia
+dn = DecayNode(topology)
+```
+It returns a `DecayNode` which children are `DecayNote`s as well.
+
+#### Computing decay angles
+
+To compute angles for an arbitrary decay topology, one needs:
+1. create a topolory
+2. add information to each node, either it is a particle-1 or particle-2, since the tranformations for these are different.
+3. The method `add_transform_through` create a transformation based on the passed type, `HelicityTransformation` and apply to particles from parents to children.
+
+The line that do that are:
+```julia
+labeled_topology = (1, (2, 3))
+momenta_dict = Dict(four_momenta_gj)
+#
+tree_empty = DecayNode(labeled_topology);
+tree_with_particle_order = add_indices_order(tree_empty);
+tree_with_four_vectors = add_transform_through(HelicityTransformation, tree_with_particle_order, momenta_dict);
+```
 
 #### Mapping over the Tree
 
@@ -57,7 +80,17 @@ end
 
 After this operation, `name_repr` is a new tree where each node contains a `NamedTuple` with a `name` (a string representation of the original node’s value) and a `tuple_representation`.
 
-#### Mapping with Parent Information
+
+## Internals
+
+### Key methods for tree manipulation
+
+- **`map_tree`**: Traverses the tree and applies a function to each node, generating a new tree with transformed node values.
+- **`map_with_parent`**: Similar to `map_tree`, but provides access to the parent’s value, allowing calculations that depend on both the parent and child nodes.
+
+This setup allows you to represent decay chains as trees, traverse and manipulate them flexibly, and perform calculations at each node or across parent-child relationships.
+
+### Mapping with Parent Information
 
 Using `map_with_parent`, you can apply a function that has access to both the current node and its parent’s value, which can be useful for calculations that depend on the hierarchical structure of the decay chain.
 
@@ -68,14 +101,6 @@ end
 ```
 
 In this example, each node in `with_parent` contains a string showing the path from the root node to the current node in the form of `"parent => child"`. For the root node, the initial `parent_value` is set to `"X"`, which you can customize.
-
-### Summary of Key Functions
-
-- **`DecayNode`**: Represents nodes in a tree structure for decay chains, storing kinematic or angular data.
-- **`map_tree`**: Traverses the tree and applies a function to each node, generating a new tree with transformed node values.
-- **`map_with_parent`**: Similar to `map_tree`, but provides access to the parent’s value, allowing calculations that depend on both the parent and child nodes.
-
-This setup allows you to represent decay chains as trees, traverse and manipulate them flexibly, and perform calculations at each node or across parent-child relationships.
 
 ---
 

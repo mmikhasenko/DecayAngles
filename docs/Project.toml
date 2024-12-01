@@ -1,9 +1,6 @@
 [deps]
-DecayAngles = "b554e927-dfdc-487d-b897-432a0f9e843f"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-FourVectors = "b122eb78-8380-428a-b8c8-584a022ae8b6"
 LiveServer = "16fef848-5104-11e9-1b77-fb7a48bbb589"
-LorentzVectorBase = "592a752d-6533-4762-a71b-738712ea30ec"
 
 [compat]
 Documenter = "1"

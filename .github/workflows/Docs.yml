@@ -39,6 +39,8 @@ jobs:
         run: |
           julia --project=docs -e '
             using Pkg
+            Pkg.develop(PackageSpec(url="https://github.com/JuliaHEP/LorentzVectorBase.jl.git"))
+            Pkg.develop(PackageSpec(url="https://github.com/mmikhasenko/FourVectors.jl.git"))
             Pkg.develop(PackageSpec(path=pwd()))
             Pkg.instantiate()'
       - name: Run doctest

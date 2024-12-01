@@ -12,7 +12,6 @@ Setfield = "efcf1570-3423-57d1-acb7-fd33fddbac46"
 
 [compat]
 AbstractTrees = "0.4.5"
-FourVectors = "0.2.0"
-LorentzVectorBase = "0.0.1"
+FourVectors = "0.3.0"
 Parameters = "0.12.3"
 Setfield = "1.1.1"
